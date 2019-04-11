@@ -2,9 +2,11 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -13,6 +15,13 @@ namespace CRUDLinqTp2019
     public partial class ListOfBooksForm : Form
     {
         internal static LibraryLinqDataContext DbDataContext = new LibraryLinqDataContext();
+
+
+
+        //Connected Mode
+        private SqlConnection conx = new SqlConnection(@"Data Source=DESKTOP-7J9ODH9\SQLEXPRESS;Initial Catalog=LibraryDB;Integrated Security=True;Pooling=False");
+        private SqlCommand cmd;
+        private SqlDataReader Dr;
         public ListOfBooksForm()
         {
             InitializeComponent();
@@ -35,8 +44,8 @@ namespace CRUDLinqTp2019
             //    e.Cancel = true;
             //}
             // or this code
-            const string message = "Are you sure that you would like to cancel the installer?";
-            const string caption = "Cancel Installer";
+            const string message = "Are you sure that you would like to cancel the application?";
+            const string caption = "Cancel Confiramtion";
 
             var result = MessageBox.Show(message, caption,
                              MessageBoxButtons.YesNoCancel,
@@ -102,7 +111,157 @@ namespace CRUDLinqTp2019
 
         private void bt_ModifyBook_Click(object sender, EventArgs e)
         {
+            ModifyBookForm mbf = new ModifyBookForm(dataGridViewBooks);
+            mbf.Show();
 
+            // or the version bellow for updating values directly on the dataGridView Celles
+            //index of the selected row
+            //int index = dataGridViewBooks.CurrentRow.Index;
+            //string IsbnCode = dataGridViewBooks[0, index].Value.ToString();
+            //Book b1 = DbDataContext.Books.Single<Book>(x => x.IsbnCode == IsbnCode);
+
+            //DataGridViewCell C1 = dataGridViewBooks.Rows[index].Cells[0];
+            //C1.ReadOnly = true;
+            //if (dataGridViewBooks[1, index].Value != null)
+            //    b1.Title= dataGridViewBooks[1,index].Value.ToString();
+            //if (dataGridViewBooks[3, index].Value != null)
+            //    b1.NbrPages= (int)dataGridViewBooks[3, index].Value;
+            //if(dataGridViewBooks[4, index].Value!=null)
+            //    b1.ReleaseDate=(DateTime)dataGridViewBooks[4, index].Value;
+            //DbDataContext.SubmitChanges();
+            //MessageBox.Show("The Book has been updated...");
         }
+        // If you want to implement both "*" and "?"
+        private static String LikeToRegular(String text)
+        {
+            return "^" + Regex.Escape(text).Replace("?", ".").Replace("%", ".*") + "$";
+        }
+        private void txt_FilterValue_TextChanged(object sender, EventArgs e)
+        {
+            //Connected Mode
+
+            List<Book> lstOfBooks = new List<Book>();
+            try
+            {
+                conx.Open();
+                cmd = new SqlCommand();
+                cmd.Connection = conx;
+                cmd.CommandTimeout = 10;
+                cmd.CommandType = CommandType.Text;
+                cmd.CommandText = "select *  from book where Title like @filter";
+                //cmd.Parameters.AddWithValue("@filter", txt_FilterValue.Text); //or
+                cmd.Parameters.Add("@filter", SqlDbType.Text);
+                cmd.Parameters["@filter"].Value = txt_FilterValue.Text;
+                //Or
+               // cmd.Parameters.Add("@filter", SqlDbType.Text).Value= txt_FilterValue.Text;
+                
+                using (Dr = cmd.ExecuteReader()) //or  using(Dr = cmd.ExecuteReader(CommandBehavoir.CloseConnection)) {
+                {
+                    while (Dr.Read())
+                    {
+                        Book b1 = new Book();
+                        b1.IsbnCode = Dr.GetString(0);
+                        b1.Title = Dr.GetString(1);
+                        if (!Dr.IsDBNull(2))
+                            b1.CoverImage = (byte[])Dr.GetValue(2);
+                        if (!Dr.IsDBNull(3))
+                            b1.NbrPages = Dr.GetInt32(3);
+                        if (!Dr.IsDBNull(4))
+                            b1.ReleaseDate = Dr.GetDateTime(4);
+                        lstOfBooks.Add(b1);
+                    }
+                }
+
+                dataGridViewBooks.DataSource = lstOfBooks;
+            }
+            catch (Exception ex)
+            {
+
+                MessageBox.Show(ex.Message);
+            }
+            finally
+            {
+                if (conx.State == ConnectionState.Open)
+                {
+                    conx.Close();
+                }
+            }
+
+
+
+
+
+
+
+            //try
+            //{
+
+            //    string text = txt_FilterValue.Text;
+            //    MessageBox.Show(LikeToRegular(text));
+
+            //    if (text == "")
+            //        dataGridViewBooks.DataSource = DbDataContext.Books;
+            //    else
+            //    {
+            //        string criteria = LikeToRegular(text);
+            //        dataGridViewBooks.DataSource = (from x in DbDataContext.Books.AsEnumerable<Book>()
+            //                                        where Regex.IsMatch(x.Title, LikeToRegular(text))
+            //                                        select x).ToList<Book>();
+            //    }
+
+            //    }
+            //catch (Exception)
+            //{
+
+            //    throw;
+            //}
+        }
+
+        private ErrorProvider ep = new ErrorProvider();
+        
+
+        private void dataGridViewBooks_CellValidating(object sender, DataGridViewCellValidatingEventArgs e)
+        {
+            if (e.ColumnIndex < 0 || e.RowIndex < 0)
+                return;
+            if (e.ColumnIndex==0)
+            {
+                string isbnCode = e.FormattedValue.ToString();
+                Control edit = dataGridViewBooks.EditingControl;
+                if (edit != null && isbnCode==string.Empty)
+                {
+                    e.Cancel = true;
+                    ep.SetError(edit, "The value is required");
+                    ep.SetIconAlignment(edit, ErrorIconAlignment.MiddleLeft);
+                    ep.SetIconPadding(edit, -20); // icon displays on left side of cell
+                }
+            }
+            if (e.ColumnIndex == 3)
+            {
+                int val;
+                Control edit = dataGridViewBooks.EditingControl;
+                if (edit != null && !int.TryParse(e.FormattedValue.ToString(), out val))
+                {
+                    e.Cancel = true;
+                    ep.SetError(edit, "Numeric value required");
+                    ep.SetIconAlignment(edit, ErrorIconAlignment.MiddleLeft);
+                    ep.SetIconPadding(edit, -20); // icon displays on left side of cell
+                }
+            }
+        }
+
+        private void dataGridViewBooks_CellEndEdit(object sender, DataGridViewCellEventArgs e)
+        {
+            //dataGridViewBooks.Rows[e.RowIndex].ErrorText = String.Empty;
+            ep.Clear();
+        }
+
+        private void bt_Close_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
+            
+        }
+
+        
     }
 }

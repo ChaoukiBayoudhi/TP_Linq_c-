@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Drawing.Imaging;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -40,6 +42,16 @@ namespace CRUDLinqTp2019
             b1.Title = txt_Title.Text;
             b1.NbrPages = int.Parse(txt_NbrPages.Text);
 
+
+            //insert The Photo from the PictureBox
+            MemoryStream ms = new MemoryStream();
+            pictureBox1.Image.Save(ms, ImageFormat.Jpeg);
+            byte[] CoverImage_aray = new byte[ms.Length];
+            ms.Position = 0;
+            ms.Read(CoverImage_aray, 0, CoverImage_aray.Length);
+            b1.CoverImage = CoverImage_aray;
+
+
             //Add b1 to Books then to the Database
             ListOfBooksForm.DbDataContext.Books.InsertOnSubmit(b1);
             ListOfBooksForm.DbDataContext.SubmitChanges();
@@ -53,6 +65,25 @@ namespace CRUDLinqTp2019
         private void bt_Close_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private void bt_AddImage_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog ofd = new OpenFileDialog();
+            //ofd.InitialDirectory = @"c:\";
+            ofd.RestoreDirectory = true;
+            ofd.Multiselect = false;
+            ofd.Title = "Select an image";
+            ofd.Filter = "All images types|*.jpg;*.jpeg;*.png|" +
+                "JPEG (*.jpg;*.jpeg)|*.jpg;*.jpeg|" +
+                "Portable Network Graphic (*.png)|*.png";
+
+            if (ofd.ShowDialog() == DialogResult.OK)
+            {
+                String f1 = ofd.FileName;
+                pictureBox1.ImageLocation = f1;
+                pictureBox1.Image = Image.FromFile(f1); // Or =new Bitmap(f1);
+            }
         }
     }
 }

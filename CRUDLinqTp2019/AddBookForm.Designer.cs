@@ -165,6 +165,7 @@
             this.bt_AddImage.TabIndex = 11;
             this.bt_AddImage.Text = "Browse";
             this.bt_AddImage.UseVisualStyleBackColor = true;
+            this.bt_AddImage.Click += new System.EventHandler(this.bt_AddImage_Click);
             // 
             // pictureBox1
             // 

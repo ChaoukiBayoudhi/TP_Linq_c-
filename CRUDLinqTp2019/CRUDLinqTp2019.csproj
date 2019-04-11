@@ -80,6 +80,12 @@
     <Compile Include="ListOfBooksForm.Designer.cs">
       <DependentUpon>ListOfBooksForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="ModifyBookForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ModifyBookForm.Designer.cs">
+      <DependentUpon>ModifyBookForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="AddBookForm.resx">
@@ -90,6 +96,9 @@
     </None>
     <EmbeddedResource Include="ListOfBooksForm.resx">
       <DependentUpon>ListOfBooksForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ModifyBookForm.resx">
+      <DependentUpon>ModifyBookForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -122,7 +131,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="MetroFramework.txt" />
-    <None Include="Resources\student.jpg" />
+    <EmbeddedResource Include="Resources\student.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <Service Include="{3259AA49-8AA1-44D3-9025-A0B520596A8C}" />

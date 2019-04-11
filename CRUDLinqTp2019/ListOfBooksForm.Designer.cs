@@ -56,6 +56,8 @@
             this.dataGridViewBooks.Size = new System.Drawing.Size(510, 246);
             this.dataGridViewBooks.TabIndex = 0;
             this.dataGridViewBooks.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
+            this.dataGridViewBooks.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewBooks_CellEndEdit);
+            this.dataGridViewBooks.CellValidating += new System.Windows.Forms.DataGridViewCellValidatingEventHandler(this.dataGridViewBooks_CellValidating);
             // 
             // groupBox1
             // 
@@ -109,6 +111,7 @@
             this.txt_FilterValue.Name = "txt_FilterValue";
             this.txt_FilterValue.Size = new System.Drawing.Size(141, 24);
             this.txt_FilterValue.TabIndex = 8;
+            this.txt_FilterValue.TextChanged += new System.EventHandler(this.txt_FilterValue_TextChanged);
             // 
             // cmb_OrderBy
             // 
@@ -180,6 +183,7 @@
             this.bt_Close.TabIndex = 3;
             this.bt_Close.Text = "Close";
             this.bt_Close.UseVisualStyleBackColor = true;
+            this.bt_Close.Click += new System.EventHandler(this.bt_Close_Click);
             // 
             // label1
             // 
