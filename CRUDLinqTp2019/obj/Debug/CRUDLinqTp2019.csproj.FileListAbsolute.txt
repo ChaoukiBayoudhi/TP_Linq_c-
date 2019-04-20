@@ -1,0 +1,17 @@
+C:\Users\chaou\source\repos\CRUDLinqTp2019\CRUDLinqTp2019\bin\Debug\CRUDLinqTp2019.exe.config
+C:\Users\chaou\source\repos\CRUDLinqTp2019\CRUDLinqTp2019\bin\Debug\CRUDLinqTp2019.exe
+C:\Users\chaou\source\repos\CRUDLinqTp2019\CRUDLinqTp2019\bin\Debug\CRUDLinqTp2019.pdb
+C:\Users\chaou\source\repos\CRUDLinqTp2019\CRUDLinqTp2019\bin\Debug\MetroFramework.dll
+C:\Users\chaou\source\repos\CRUDLinqTp2019\CRUDLinqTp2019\bin\Debug\MetroFramework.Fonts.dll
+C:\Users\chaou\source\repos\CRUDLinqTp2019\CRUDLinqTp2019\obj\Debug\CRUDLinqTp2019.csprojAssemblyReference.cache
+C:\Users\chaou\source\repos\CRUDLinqTp2019\CRUDLinqTp2019\obj\Debug\CRUDLinqTp2019.Properties.Resources.resources
+C:\Users\chaou\source\repos\CRUDLinqTp2019\CRUDLinqTp2019\obj\Debug\CRUDLinqTp2019.csproj.GenerateResource.cache
+C:\Users\chaou\source\repos\CRUDLinqTp2019\CRUDLinqTp2019\obj\Debug\CRUDLinqTp2019.csproj.CoreCompileInputs.cache
+C:\Users\chaou\source\repos\CRUDLinqTp2019\CRUDLinqTp2019\obj\Debug\CRUDLinqTp2019.csproj.CopyComplete
+C:\Users\chaou\source\repos\CRUDLinqTp2019\CRUDLinqTp2019\obj\Debug\CRUDLinqTp2019.exe
+C:\Users\chaou\source\repos\CRUDLinqTp2019\CRUDLinqTp2019\obj\Debug\CRUDLinqTp2019.pdb
+C:\Users\chaou\source\repos\CRUDLinqTp2019\CRUDLinqTp2019\obj\Debug\CRUDLinqTp2019.AddBookForm.resources
+C:\Users\chaou\source\repos\CRUDLinqTp2019\CRUDLinqTp2019\obj\Debug\CRUDLinqTp2019.ListOfBooksForm.resources
+C:\Users\chaou\source\repos\CRUDLinqTp2019\CRUDLinqTp2019\obj\Debug\CRUDLinqTp2019.ModifyBookForm.resources
+C:\Users\chaou\source\repos\CRUDLinqTp2019\CRUDLinqTp2019\bin\Debug\Resources\student.jpg
+C:\Users\chaou\source\repos\CRUDLinqTp2019\CRUDLinqTp2019\obj\Debug\CRUDLinqTp2019.AddAuthorForm.resources

@@ -1,0 +1,30 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="LibraryDB" Class="LibraryLinqDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="AppSettings" ConnectionString="Data Source=DESKTOP-7J9ODH9\SQLEXPRESS;Initial Catalog=LibraryDB;Integrated Security=True;Pooling=False" SettingsObjectName="CRUDLinqTp2019.Properties.Settings" SettingsPropertyName="LibraryDBConnectionString" Provider="System.Data.SqlClient" />
+  <Table Name="dbo.Author" Member="Authors">
+    <Type Name="Author">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Name" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Nationality" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="BirthDay" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Association Name="Author_BookAuthor" Member="BookAuthors" ThisKey="Id" OtherKey="IdAuthor" Type="BookAuthor" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Book" Member="Books">
+    <Type Name="Book">
+      <Column Name="IsbnCode" Type="System.String" DbType="NVarChar(10) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Title" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="CoverImage" Type="System.Data.Linq.Binary" DbType="VarBinary(MAX)" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="NbrPages" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="ReleaseDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Association Name="Book_BookAuthor" Member="BookAuthors" ThisKey="IsbnCode" OtherKey="IsbnCode" Type="BookAuthor" />
+    </Type>
+  </Table>
+  <Table Name="dbo.BookAuthors" Member="BookAuthors">
+    <Type Name="BookAuthor">
+      <Column Name="IsbnCode" Type="System.String" DbType="NVarChar(10) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="IdAuthor" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Association Name="Author_BookAuthor" Member="Author" ThisKey="IdAuthor" OtherKey="Id" Type="Author" IsForeignKey="true" />
+      <Association Name="Book_BookAuthor" Member="Book" ThisKey="IsbnCode" OtherKey="IsbnCode" Type="Book" IsForeignKey="true" />
+    </Type>
+  </Table>
+</Database>
