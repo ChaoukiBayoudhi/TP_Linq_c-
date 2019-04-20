@@ -88,9 +88,12 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+<<<<<<< HEAD
     <EmbeddedResource Include="AddAuthorForm.resx">
       <DependentUpon>AddAuthorForm.cs</DependentUpon>
     </EmbeddedResource>
+=======
+>>>>>>> 405170a7e06592cee818cf10ef8d784288db1093
     <EmbeddedResource Include="AddBookForm.resx">
       <DependentUpon>AddBookForm.cs</DependentUpon>
     </EmbeddedResource>

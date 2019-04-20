@@ -14,4 +14,7 @@ C:\Users\chaou\source\repos\CRUDLinqTp2019\CRUDLinqTp2019\obj\Debug\CRUDLinqTp20
 C:\Users\chaou\source\repos\CRUDLinqTp2019\CRUDLinqTp2019\obj\Debug\CRUDLinqTp2019.ListOfBooksForm.resources
 C:\Users\chaou\source\repos\CRUDLinqTp2019\CRUDLinqTp2019\obj\Debug\CRUDLinqTp2019.ModifyBookForm.resources
 C:\Users\chaou\source\repos\CRUDLinqTp2019\CRUDLinqTp2019\bin\Debug\Resources\student.jpg
+<<<<<<< HEAD
 C:\Users\chaou\source\repos\CRUDLinqTp2019\CRUDLinqTp2019\obj\Debug\CRUDLinqTp2019.AddAuthorForm.resources
+=======
+>>>>>>> 405170a7e06592cee818cf10ef8d784288db1093

@@ -158,7 +158,10 @@
             this.bt_AddImage.TabIndex = 11;
             this.bt_AddImage.Text = "Browse";
             this.bt_AddImage.UseVisualStyleBackColor = true;
+<<<<<<< HEAD
             this.bt_AddImage.Click += new System.EventHandler(this.bt_AddImage_Click);
+=======
+>>>>>>> 405170a7e06592cee818cf10ef8d784288db1093
             // 
             // groupBox1
             // 

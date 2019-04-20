@@ -1,9 +1,15 @@
 ﻿using System;
+<<<<<<< HEAD
 using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Data.SqlClient;
+=======
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+>>>>>>> 405170a7e06592cee818cf10ef8d784288db1093
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -14,13 +20,17 @@ namespace CRUDLinqTp2019
 {
     public partial class AddAuthorForm : Form
     {
+<<<<<<< HEAD
         private DataGridView dataGridViewAuthors;
         private string IsbnCodeOfBook;
 
+=======
+>>>>>>> 405170a7e06592cee818cf10ef8d784288db1093
         public AddAuthorForm()
         {
             InitializeComponent();
         }
+<<<<<<< HEAD
 
         public AddAuthorForm(DataGridView dataGridViewAuthors, string IsbnCodeOfBook)
         {
@@ -164,5 +174,7 @@ namespace CRUDLinqTp2019
         {
             this.Close();
         }
+=======
+>>>>>>> 405170a7e06592cee818cf10ef8d784288db1093
     }
 }

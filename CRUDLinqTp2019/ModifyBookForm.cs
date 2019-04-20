@@ -105,6 +105,7 @@ namespace CRUDLinqTp2019
             this.Close();
 
         }
+<<<<<<< HEAD
 
         private void bt_AddImage_Click(object sender, EventArgs e)
         {
@@ -124,5 +125,7 @@ namespace CRUDLinqTp2019
                 pictureBox1.Image = Image.FromFile(f1); // Or =new Bitmap(f1);
             }
         }
+=======
+>>>>>>> 405170a7e06592cee818cf10ef8d784288db1093
     }
 }

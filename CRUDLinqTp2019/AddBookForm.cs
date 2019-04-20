@@ -2,7 +2,10 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+<<<<<<< HEAD
 using System.Data.SqlClient;
+=======
+>>>>>>> 405170a7e06592cee818cf10ef8d784288db1093
 using System.Drawing;
 using System.Drawing.Imaging;
 using System.IO;
@@ -30,12 +33,17 @@ namespace CRUDLinqTp2019
 
         private void bt_AddAuthor_Click(object sender, EventArgs e)
         {
+<<<<<<< HEAD
             AddAuthorForm fa = new AddAuthorForm(dataGridViewAuthors, txt_IsbnCode.Text);
+=======
+            AddAuthorForm fa = new AddAuthorForm();
+>>>>>>> 405170a7e06592cee818cf10ef8d784288db1093
             fa.Show();
         }
 
         private void bt_AddBook_Click(object sender, EventArgs e)
         {
+<<<<<<< HEAD
             try
             {
 
@@ -89,6 +97,33 @@ namespace CRUDLinqTp2019
                 MessageBox.Show(ex.Message);
             }
         
+=======
+            //Create a Book object
+            Book b1 = new Book();
+            //Initialize Properties
+            b1.IsbnCode = txt_IsbnCode.Text;
+            b1.Title = txt_Title.Text;
+            b1.NbrPages = int.Parse(txt_NbrPages.Text);
+
+
+            //insert The Photo from the PictureBox
+            MemoryStream ms = new MemoryStream();
+            pictureBox1.Image.Save(ms, ImageFormat.Jpeg);
+            byte[] CoverImage_aray = new byte[ms.Length];
+            ms.Position = 0;
+            ms.Read(CoverImage_aray, 0, CoverImage_aray.Length);
+            b1.CoverImage = CoverImage_aray;
+
+
+            //Add b1 to Books then to the Database
+            ListOfBooksForm.DbDataContext.Books.InsertOnSubmit(b1);
+            ListOfBooksForm.DbDataContext.SubmitChanges();
+            MessageBox.Show("The book has been added successfully");
+
+            //update the content Of the dataGridView of Books
+            dataGridViewBooks1.DataSource = null;
+            dataGridViewBooks1.DataSource = ListOfBooksForm.DbDataContext.Books;
+>>>>>>> 405170a7e06592cee818cf10ef8d784288db1093
         }
 
         private void bt_Close_Click(object sender, EventArgs e)

@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+<<<<<<< HEAD
             this.dtp_BirthDay = new System.Windows.Forms.DateTimePicker();
             this.BirthDay = new System.Windows.Forms.Label();
             this.bt_Close = new System.Windows.Forms.Button();
@@ -208,5 +209,14 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.ComboBox cmb_Id;
         private System.Windows.Forms.CheckBox chk_ExistingAuthor;
+=======
+            this.components = new System.ComponentModel.Container();
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Text = "AddAuthorForm";
+        }
+
+        #endregion
+>>>>>>> 405170a7e06592cee818cf10ef8d784288db1093
     }
 }

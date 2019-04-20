@@ -89,7 +89,11 @@ namespace CRUDLinqTp2019
             try
             {
                 //index of the selected row
+<<<<<<< HEAD
                 int index = dataGridViewBooks.CurrentRow.Index;
+=======
+                int index = dataGridViewBooks.CurrentCell.RowIndex;
+>>>>>>> 405170a7e06592cee818cf10ef8d784288db1093
                 string IsbnCode = dataGridViewBooks[0, index].Value.ToString();
                 Book b1 = DbDataContext.Books.Single<Book>(x => x.IsbnCode == IsbnCode);
 
@@ -101,10 +105,17 @@ namespace CRUDLinqTp2019
                                                select y;
                                             // or=DbDataContext.Books;
             }
+<<<<<<< HEAD
             catch (Exception ex)
             {
 
                 MessageBox.Show("Please select a row in the dataGridView" + ex.Message);
+=======
+            catch (Exception)
+            {
+
+                MessageBox.Show("Please select a row in the dataGridView");
+>>>>>>> 405170a7e06592cee818cf10ef8d784288db1093
             }
             
         }
@@ -148,6 +159,7 @@ namespace CRUDLinqTp2019
                 cmd.Connection = conx;
                 cmd.CommandTimeout = 10;
                 cmd.CommandType = CommandType.Text;
+<<<<<<< HEAD
                 if (txt_FilterValue.Text == string.Empty)
                     cmd.CommandText = "select *  from book";
                 else
@@ -160,6 +172,15 @@ namespace CRUDLinqTp2019
                     // cmd.Parameters.Add("@filter", SqlDbType.Text).Value= txt_FilterValue.Text;
 
                 } 
+=======
+                cmd.CommandText = "select *  from book where Title like @filter";
+                //cmd.Parameters.AddWithValue("@filter", txt_FilterValue.Text); //or
+                cmd.Parameters.Add("@filter", SqlDbType.Text);
+                cmd.Parameters["@filter"].Value = txt_FilterValue.Text;
+                //Or
+               // cmd.Parameters.Add("@filter", SqlDbType.Text).Value= txt_FilterValue.Text;
+                
+>>>>>>> 405170a7e06592cee818cf10ef8d784288db1093
                 using (Dr = cmd.ExecuteReader()) //or  using(Dr = cmd.ExecuteReader(CommandBehavoir.CloseConnection)) {
                 {
                     while (Dr.Read())
